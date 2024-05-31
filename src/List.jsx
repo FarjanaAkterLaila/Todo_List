@@ -24,6 +24,26 @@ const List = () => {
     }
   };
 
+  const handleEdit = (index) => {
+    
+    setIsEditing(false);
+    setValue(todo[index].text);
+    setIsEditing(true);
+    setCurrentIndex(index);
+  };
+
+  const handleDelete = (index) => {
+    const updatedTodo = todo.filter((_, idx) => idx !== index);
+    setTodo(updatedTodo);
+  };
+
+
+  const toggleComplete = (index) => {
+    const updatedTodo = todo.map((item, idx) => 
+      idx === index ? { ...item, completed: !item.completed } : item
+    );
+    setTodo(updatedTodo);
+  };
 
   return (
     <div className="todo-container">
@@ -39,7 +59,23 @@ const List = () => {
           {isEditing ? 'Update' : 'Add'}
         </button>
       </div>
-     
+      <div className="todo-section">
+        <h2>TODO</h2>
+        <ul>
+          {todo.filter(item => !item.completed).map((item, index) => (
+            <li key={index} >
+              
+               
+             
+                <span>{item.text}</span>
+              
+              <button onClick={() => handleEdit(index)}>Edit</button>
+              <button onClick={() => handleDelete(index)}>Delete</button>
+            </li>
+          ))}
+        </ul>
+      </div>
+      
     </div>
   );
 };
