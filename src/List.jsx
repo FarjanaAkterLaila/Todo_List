@@ -36,7 +36,11 @@ const List = () => {
     const updatedTodo = todo.filter((_, idx) => idx !== index);
     setTodo(updatedTodo);
   };
-
+  const handleComDelete = (index1) => {
+    const updatedTodo = todo.filter((_, idx) => idx !== index1);
+    setTodo(updatedTodo);
+  };
+  
 
   const toggleComplete = (index) => {
     const updatedTodo = todo.map((item, idx) => 
@@ -63,19 +67,44 @@ const List = () => {
         <h2>TODO</h2>
         <ul>
           {todo.filter(item => !item.completed).map((item, index) => (
-            <li key={index} >
-              
-               
-             
+            <li key={index} className={item.completed ? 'completed' : ''}>
+              <input 
+                type="checkbox"
+                checked={item.completed}
+                onChange={() => toggleComplete(index)}
+              />
+              {isEditing && currentIndex === index ? (
+                <input 
+                  type="text" 
+                  value={value} 
+                  onChange={e => setValue(e.target.value)} 
+                />
+              ) : (
                 <span>{item.text}</span>
-              
+              )}
               <button onClick={() => handleEdit(index)}>Edit</button>
               <button onClick={() => handleDelete(index)}>Delete</button>
             </li>
           ))}
         </ul>
       </div>
-      
+      <div className="completed-section">
+        <h2>COMPLETED</h2>
+        <ul>
+          {todo.filter(item => item.completed).map((item) => (
+            <li  className={item.completed ? 'completed' : ''}>
+              <input 
+                type="checkbox"
+                checked={item.completed}
+                // onChange={() => toggleComplete(index1)}
+              />
+              <span>{item.text}</span>
+              <button >Edit</button>
+              <button >Delete</button>
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 };
