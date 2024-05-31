@@ -25,11 +25,7 @@ const List = () => {
   };
 
   const handleEdit = (index) => {
-    
-    setIsEditing(false);
-    setValue(todo[index].text);
-    setIsEditing(true);
-    setCurrentIndex(index);
+  
   };
 
   const handleDelete = (index) => {
