@@ -25,7 +25,8 @@ const List = () => {
   };
 
   const handleEdit = (index) => {
-  
+    
+
   };
 
   const handleDelete = (index) => {
