@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './App.css';
 import './List.css';
+import { MdDelete } from "react-icons/md";
 
 const List = () => {
   const [value, setValue] = useState('');
@@ -83,7 +84,7 @@ const List = () => {
                 <span>{item.text}</span>
               )}
               <button onClick={() => handleEdit(index)}>Edit</button>
-              <button onClick={() => handleDelete(index)}>Delete</button>
+              <button onClick={() => handleDelete(index)}><MdDelete style={{ fontSize: '20px' }} /></button>
             </li>
           ))}
         </ul>
